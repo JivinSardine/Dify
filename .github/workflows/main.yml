@@ -32,4 +32,6 @@ jobs:
           docker-compose ps
         
       - name: Set up ngrok and expose port
-        run: docker run -d --name ngrok -e NGROK_AUTHTOKEN=2fUArZstmOUGKwgdV7NSN4PCMgt_YGSDYKR1oydqx5zLaEF2 -p 4040:4040 ngrok/ngrok http http://localhost:80
+        run: |
+          docker pull ngrok/ngrok
+          docker run --net=host -it -e NGROK_AUTHTOKEN=2RmkREVcca3UpvPU03gruAcqWhF_4YcND1Pdjt8nG1r2Gya5i ngrok/ngrok:latest http --domain=flea-great-joey.ngrok-free.app 80
