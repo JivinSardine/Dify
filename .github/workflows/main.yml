@@ -31,10 +31,14 @@ jobs:
           cd docker
           docker-compose ps
         
+      - name: Download ngrok executable
+        run: |
+          curl -o ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+          unzip ngrok.zip
+          chmod +x ngrok
+
       - name: Set up ngrok
-        run: |
-          docker pull ngrok/ngrok
-      
-      - name: Build and start ngrok
-        run: |
-          docker run -d --name ngrok -e NGROK_AUTHTOKEN=2gPtkkirCaj7o63UqKPoEK6VuDr_3anDih2edcmfLiyRN2vtm -p 4040:4040 ngrok/ngrok http http://localhost:80
+        run: ./ngrok authtoken ${{ secrets.NGROK_AUTHTOKEN }}
+
+      - name: Start ngrok tunnel
+        run: ./ngrok http 80
