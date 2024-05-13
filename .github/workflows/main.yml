@@ -16,7 +16,7 @@ jobs:
           repository: langgenius/dify
 
       - name: Display directory structure
-        run: ls -R
+        run: ls
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
