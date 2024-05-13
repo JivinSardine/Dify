@@ -37,4 +37,4 @@ jobs:
       
       - name: Build and start ngrok
         run: |
-          docker run -d --net=host -it -e NGROK_AUTHTOKEN=2RmkREVcca3UpvPU03gruAcqWhF_4YcND1Pdjt8nG1r2Gya5i ngrok/ngrok:latest http --domain=flea-great-joey.ngrok-free.app 80
+          docker run -d --name ngrok -e NGROK_AUTHTOKEN=2gPtkkirCaj7o63UqKPoEK6VuDr_3anDih2edcmfLiyRN2vtm -p 4040:4040 ngrok/ngrok http http://localhost:install
