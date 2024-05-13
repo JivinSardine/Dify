@@ -34,4 +34,4 @@ jobs:
       - name: Set up ngrok and expose port
         run: |
           docker pull ngrok/ngrok
-          docker run --net=host -it -e NGROK_AUTHTOKEN=2RmkREVcca3UpvPU03gruAcqWhF_4YcND1Pdjt8nG1r2Gya5i ngrok/ngrok:latest http --domain=flea-great-joey.ngrok-free.app 80
+          docker run -d --net=host -it -e NGROK_AUTHTOKEN=2RmkREVcca3UpvPU03gruAcqWhF_4YcND1Pdjt8nG1r2Gya5i ngrok/ngrok:latest http --domain=flea-great-joey.ngrok-free.app 80
