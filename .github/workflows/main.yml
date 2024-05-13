@@ -1,0 +1,30 @@
+name: Deploy with Docker Compose
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: actions/setup-docker@v2
+
+      - name: Build and start containers
+        run: |
+          git clone https://github.com/langgenius/dify.git
+          cd dify/docker
+          docker-compose up -d
+
+      - name: Check container status
+        run: docker-compose ps
+
+      - name: Set up ngrok and expose port
+        run: |
+          docker run -d --name ngrok -e NGROK_AUTHTOKEN=2fUArZstmOUGKwgdV7NSN4PCMgt_YGSDYKR1oydqx5zLaEF2 -p 4040:4040 ngrok/ngrok http http://localhost:install
