@@ -10,8 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout dify repository
         uses: actions/checkout@v2
+        with:
+          repository: langgenius/dify
 
       - name: Display current directory
         run: pwd
@@ -24,7 +26,6 @@ jobs:
 
       - name: Build and start containers
         run: |
-          git clone https://github.com/langgenius/dify.git
           cd dify/docker
           docker-compose up -d
 
