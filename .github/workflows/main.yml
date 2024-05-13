@@ -13,7 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Docker
+      - name: Display current directory
+        run: pwd
+
+      - name: List files in current directory
+        run: ls -la
+
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
       - name: Build and start containers
@@ -27,4 +33,4 @@ jobs:
 
       - name: Set up ngrok and expose port
         run: |
-          docker run -d --name ngrok -e NGROK_AUTHTOKEN=2fUArZstmOUGKwgdV7NSN4PCMgt_YGSDYKR1oydqx5zLaEF2 -p 4040:4040 ngrok/ngrok http http://localhost:install
+          docker run -d --name ngrok -e NGROK_AUTHTOKEN=2fUArZstmOUGKwgdV7NSN4PCMgt_YGSDYKR1oydqx5zLaEF2 -p 4040:4040 ngrok/ngrok http http://localhost:80
