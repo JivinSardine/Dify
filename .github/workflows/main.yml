@@ -31,14 +31,12 @@ jobs:
           cd docker
           docker-compose ps
         
-      - name: Download ngrok executable
+      - name: Download and install ngrok
         run: |
-          curl -o ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-          unzip ngrok.zip
-          chmod +x ngrok
-
+           curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
+          
       - name: Set up ngrok
-        run: ./ngrok authtoken ${{ secrets.NGROK_AUTHTOKEN }}
+        run: ngrok config add-authtoken ${{ secrets.NGROK_AUTHTOKEN }}
 
       - name: Start ngrok tunnel
-        run: ./ngrok http 80
+        run: ngrok http 80
