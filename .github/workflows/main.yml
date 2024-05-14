@@ -38,5 +38,12 @@ jobs:
       - name: Set up ngrok
         run: ngrok config add-authtoken ${{ secrets.NGROK_AUTHTOKEN }}
 
+      - name: Loop ngrok tunnel
+        id: ngrok_tunnel_loop
+        run: echo "::set-output name=iter::${{ toJson(range(1, 5)) }}"
+
       - name: Start ngrok tunnel
-        run: ngrok http 80
+        run: |
+          for i in $(echo "${{ steps.ngrok_tunnel_loop.outputs.iter }}"); do
+            ngrok http --domain=flea-great-joey.ngrok-free.app 80
+          done
