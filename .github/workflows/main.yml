@@ -39,25 +39,5 @@ jobs:
         run: ngrok config add-authtoken ${{ secrets.NGROK_AUTHTOKEN }}
 
       - name: Start ngrok tunnel
-        run: |
-          ngrok http --domain=flea-great-joey.ngrok-free.app 80
-
-      - name: Start ngrok tunnel2
-        run: |
-          ngrok http --domain=flea-great-joey.ngrok-free.app 80
-
-      - name: Start ngrok tunnel3
-        run: |
-          ngrok http --domain=flea-great-joey.ngrok-free.app 80
-
-      - name: Start ngrok tunnel4
-        run: |
-          ngrok http --domain=flea-great-joey.ngrok-free.app 80
-
-      - name: Start ngrok tunnel5
-        run: |
-          ngrok http --domain=flea-great-joey.ngrok-free.app 80
-
-      - name: Start ngrok tunnel6
-        run: |
-          ngrok http --domain=flea-great-joey.ngrok-free.app 80
+        run: ngrok http --domain=flea-great-joey.ngrok-free.app 80
+        timeout-minutes: 1000000000000000000000000000000000000000000000000000000000000000
